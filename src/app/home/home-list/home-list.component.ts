@@ -26,10 +26,14 @@ export class HomeListComponent implements OnInit {
   };
 
   constructor(private sharedService: SharedService, private toastr: ToastrService, private busyService: BusyService) {
-    this.filterObject = INITIAL_FILTER_STATE;
   }
 
   ngOnInit(): void {
+    this.filterObject = {
+      name: "",
+      minRating: null,
+      orderBy: ""
+    };
     this.busyService.busy();
     this.sharedService.getGames().subscribe({
       next: games => {
