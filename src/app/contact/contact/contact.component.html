@@ -6,24 +6,27 @@
                     <h2 class="head03">Get in touch</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" [formGroup]="this.contactForm" (ngSubmit)="submitted=true; this.onSubmit()">
                     <h2 class="head01">Contact Form</h2>
                     <div class="contact-result-row">
                         <div class="contact-result-col">
                             <label>Name <span>*</span></label>
-                            <input type="text" value="" />
+                            <input formControlName="name" type="text" value="" />
+                            <small class="validation-error" *ngIf="submitted && contactForm.controls['name']?.errors?.required">Name field is mandatory.</small>
                         </div>
                         <div class="contact-result-col">
                             <label>Email Address <span>*</span></label>
-                            <input type="text" value="" />
+                            <input formControlName="email" type="text" value="" />
+                            <small class="validation-error" *ngIf="submitted && contactForm.controls['email']?.errors?.required">Email field is mandatory.</small>
                         </div>
                     </div>
                     <div class="contact-result-row d-flex-col">
                         <label>Message <span>*</span></label>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea formControlName="message" name="" id="" cols="30" rows="10"></textarea>
+                        <small class="validation-error" *ngIf="submitted && contactForm.controls['message']?.errors?.required">Please type in a message.</small>
                     </div>
                     <div class="contact-result-row d-none text-align-right">
-                        <button class="btn-custom" type="button">Clear</button>
+                        <button class="btn-custom" type="submit">Submit</button>
                     </div>
                 </form>
             </div>

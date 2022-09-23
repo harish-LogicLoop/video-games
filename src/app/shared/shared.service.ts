@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { filter, map, Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { IGame } from "./models/game";
 import { IPagination } from "./models/pagination";
 
@@ -22,12 +23,11 @@ function dynamicSort(property) {
   providedIn: "root"
 })
 export class SharedService {
-  baseUrl = "https://public.connectnow.org.uk";
+  // baseUrl = "https://public.connectnow.org.uk";
 
   constructor(private http: HttpClient) {}
 
   filterAndSortGames(games: IGame[], { name, minRating } = { name: null, minRating: null }, orderBy: string = null): IGame[] {
-
     // Apply the filters first.
     let modifiedGamesArr = games.filter(game => {
       // If name filter specified, however the game name does not contain the specified name, then the match fails.
@@ -82,7 +82,7 @@ export class SharedService {
   getGames(): Observable<IGame[]> {
     // If the server can whitelist the frontend URL then this is the way to go.
     // return this.http.get<IGame[]>(this.baseUrl + '/applicant-test');
-    return this.http.get(this.baseUrl + "/applicant-test").pipe(
+    return this.http.get(`${environment.getUrl}/applicant-test`).pipe(
       map((games: IGame[]) => {
         return games.map(g => {
           return { ...g, first_release_date_as_date: new Date(g.first_release_date), score: Math.ceil(g.rating / 10) };
@@ -108,7 +108,7 @@ export class SharedService {
     params = params.append("pageSize", pageSize);
 
     return this.http
-      .get<IPagination>(this.baseUrl + "/applicant-test", {
+      .get<IPagination>(`${environment.getUrl}/applicant-test`, {
         observe: "response",
         params: params
       })
