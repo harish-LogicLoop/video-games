@@ -4,12 +4,6 @@ import { ToastrService } from "ngx-toastr";
 import { SharedService } from "src/app/shared/shared.service";
 import { BusyService } from "src/app/shared/busy.service";
 
-const INITIAL_FILTER_STATE = {
-  name: "",
-  minRating: null,
-  orderBy: ""
-};
-
 @Component({
   selector: "app-home-list",
   templateUrl: "./home-list.component.html",
