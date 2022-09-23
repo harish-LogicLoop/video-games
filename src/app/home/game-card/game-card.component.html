@@ -1,0 +1,19 @@
+<ng-container>
+    <div class="img">
+        <img src="assets/images/bg01.png" />
+    </div>
+    <div class="info">
+        <div class="col">
+            <h2 class="head02">{{ this.game.name }}</h2>
+            <div class="date">
+                <strong>Release Date: {{ this.game.first_release_date }}</strong>
+            </div>
+            <div class="d-flex">
+                <p>
+                    {{ this.game.summary }}
+                </p>
+            </div>
+        </div>
+        <div class="col"><span class="number">{{this.index}}</span></div>
+    </div>
+</ng-container>
