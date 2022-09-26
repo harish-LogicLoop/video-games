@@ -16,10 +16,10 @@ export class ContactService {
    */
   postContactForm(data): Observable<Object> {
     // If the server can whitelist the frontend URL then this is the way to go.
-    // return this.http.get<IGame[]>(this.baseUrl + '/applicant-test');
+    // return this.http.get<IGame[]>(this.baseUrl + '/applicant-test/');
     return this.http.post(environment.postUrl, data);
 
     // Since your server does not whitelist localhost:4200, we can look at using jsonp.
-    // return this.http.jsonp(this.baseUrl + '/applicant-test', 'callback');
+    // return this.http.jsonp(this.baseUrl + '/applicant-test/', 'callback');
   }
 }

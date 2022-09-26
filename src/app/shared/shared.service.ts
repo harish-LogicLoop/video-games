@@ -81,8 +81,8 @@ export class SharedService {
    */
   getGames(): Observable<IGame[]> {
     // If the server can whitelist the frontend URL then this is the way to go.
-    // return this.http.get<IGame[]>(this.baseUrl + '/applicant-test');
-    return this.http.get(`${environment.getUrl}/applicant-test`).pipe(
+    // return this.http.get<IGame[]>(this.baseUrl + '/applicant-test/');
+    return this.http.get(`${environment.getUrl}/applicant-test/`).pipe(
       map((games: IGame[]) => {
         return games.map(g => {
           return { ...g, first_release_date_as_date: new Date(g.first_release_date), score: Math.ceil(g.rating / 10) };
@@ -91,7 +91,7 @@ export class SharedService {
     );
 
     // Since your server does not whitelist localhost:4200, we can look at using jsonp.
-    // return this.http.jsonp(this.baseUrl + '/applicant-test', 'callback');
+    // return this.http.jsonp(this.baseUrl + '/applicant-test/', 'callback');
   }
 
   /**
@@ -108,7 +108,7 @@ export class SharedService {
     params = params.append("pageSize", pageSize);
 
     return this.http
-      .get<IPagination>(`${environment.getUrl}/applicant-test`, {
+      .get<IPagination>(`${environment.getUrl}/applicant-test/`, {
         observe: "response",
         params: params
       })
